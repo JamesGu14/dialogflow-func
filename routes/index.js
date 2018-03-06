@@ -7,7 +7,7 @@ var router = express.Router();
 router.post('/', function(req, res, next) {
 
   let city = req.body.result.parameters.city
-  let salary = req.body.result.parameters.salary
+  let salary = req.body.result.parameters.salary.replace('$', '')
 
   let tax = salary / 10
 
