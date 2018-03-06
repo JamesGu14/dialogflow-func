@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 })
 
 /* GET home page. */
-router.post('/', function(req, res, next) {
+router.post('/webhook', function(req, res, next) {
 
   let intent = req.body.result.metadata.intentName
   let response = intents[intent](req.body.result.parameters)
