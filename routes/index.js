@@ -2,6 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
+const intents = require('../intents/')
 
 router.get('/', function(req, res, next) {
   res.render('index', {
@@ -12,13 +13,8 @@ router.get('/', function(req, res, next) {
 /* GET home page. */
 router.post('/', function(req, res, next) {
 
-  let city = req.body.result.parameters.city
-  let salary = req.body.result.parameters.salary.amount
-  let currency = req.body.result.parameters.salary.currency
-
-  let tax = salary / 10
-
-  let response = `Hi, by living in ${city}, you need to pay ${currency}${tax} personal income tax`
+  let intent = req.body.result.metadata.intentName
+  let response = intents[intent](req.body.result.parameters)
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   res.send(JSON.stringify({ "speech": response, "displayText": response }));
