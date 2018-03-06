@@ -1,10 +1,12 @@
+'use strict'
+
 var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
 
-  response = "This is a sample response from your webhook!" //Default response from the webhook to show it's working
+  let response = "This is a sample response from your webhook!" //Default response from the webhook to show it's working
 
   res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
   res.send(JSON.stringify({ "speech": response, "displayText": response }));
